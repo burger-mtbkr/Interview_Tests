@@ -12,7 +12,7 @@ namespace FisherAndPaykelAssessment
 			var linqOption = FirstNonRepeatedCharInStringLinq("Loan@#$%$LL*(gkb&*%");
 			var linqResult = linqOption.ToString();
 
-			var dictionaryOption = FirstNonRepeatedCharInString("Loan@#$%$LL*(gkb&*%");
+			var dictionaryOption = FirstNonRepeatedCharInStringDictionary("Loan@#$%$LL*(gkb&*%");
 			var dictionaryResult = linqOption.ToString();
 
 
@@ -54,7 +54,7 @@ namespace FisherAndPaykelAssessment
 		/// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
 		/// </summary>
 		/// <param name="stringInput"></param>
-		public static char FirstNonRepeatedCharInString(string stringInput)
+		public static char FirstNonRepeatedCharInStringDictionary(string stringInput)
 		{
 			var charDictionary = new Dictionary<char, int>();
 
