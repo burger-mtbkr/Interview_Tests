@@ -15,6 +15,7 @@ namespace FisherAndPaykelAssessment.Test
 		/// <param name="stringInput"></param>
 		/// <param name="expected"></param>
 		[Theory]
+		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
 		[InlineData("123abc456def", '1')]
 		[InlineData("aaaaaaaaaaaaa", ' ')]
 		[InlineData("Loan@#$%$LL*(gkb&*%", 'o')]
@@ -45,16 +46,17 @@ namespace FisherAndPaykelAssessment.Test
 			Assert.True(firstcharchar == expected);
 		}
 
-		/// <summary>
-		/// Test will use a dictionary to store the character and counts as the key values
-		/// We will itterate through the characters by creating a Character Array from the string
-		/// then see if the dictionary contains the character -
-		/// if it does then we get that value and increment it by 1 and set that as the new value for the char key in the dictionary.
-		/// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
-		/// </summary>
-		/// <param name="stringInput"></param>
-		/// <param name="expected"></param>
+		///// <summary>
+		///// Test will use a dictionary to store the character and counts as the key values
+		///// We will itterate through the characters by creating a Character Array from the string
+		///// then see if the dictionary contains the character -
+		///// if it does then we get that value and increment it by 1 and set that as the new value for the char key in the dictionary.
+		///// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
+		///// </summary>
+		///// <param name="stringInput"></param>
+		///// <param name="expected"></param>
 		[Theory]
+		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
 		[InlineData("aaaaaaaaaaaaa", ' ')]
 		[InlineData("123abc456def", '1')]
 		[InlineData("Loan@#$%$LL*(gkb&*%", 'o')]
@@ -86,7 +88,7 @@ namespace FisherAndPaykelAssessment.Test
 			if (charDictionary.Values.Contains(1))
 			{
 				firstcharchar = charDictionary.First(x => x.Value == 1).Key;
-			}		
+			}
 
 			Console.WriteLine(firstcharchar);
 			Assert.True(firstcharchar == expected);
