@@ -9,7 +9,9 @@ namespace FisherAndPaykelAssessment.Test
 {
 	public class SumOfListOfValues
 	{
-
+		/// <summary>
+		/// Test Data
+		/// </summary>
 		public static IEnumerable<object[]> SumOfListOfValuesTestData => new[]
 		{
 			new object[]
@@ -19,7 +21,14 @@ namespace FisherAndPaykelAssessment.Test
 				new object[] { new List<long>{1001,23},7, false },
 			};
 
-
+		/// <summary>
+		/// Unit test which will sum the digits of each value in the input list and add that value to a new list then order it from smallest to largest.
+		/// The test will add up the new values and test again the total sum of the new values.
+		/// create a new value and return the list of new values ordered from lowest to highest.
+		/// </summary>
+		/// <param name="listOfDigits"></param>
+		/// <param name="expected"></param>
+		/// <param name="allowNegatives"></param>
 		[Theory]
 		[MemberData(nameof(SumOfListOfValuesTestData))]
 		public void Test_SumOfListOfValues_New_Value_Totals(List<long> listOfDigits, int expected, bool allowNegatives)
