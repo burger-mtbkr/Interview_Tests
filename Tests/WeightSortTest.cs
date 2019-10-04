@@ -7,7 +7,7 @@ using Xunit;
 
 namespace FisherAndPaykelAssessment.Test
 {
-	public class SumOfListOfValuesWithComparerTest
+	public class WeightSortTest
 	{
 
 		/// <summary>
@@ -21,31 +21,45 @@ namespace FisherAndPaykelAssessment.Test
 		[Theory]
 		[InlineData("103 123 4444 99 2000", "2000 103 123 4444 99")]
 		[InlineData("2000 10003 1234000 44444444 9999 11 11 22 123", "11 11 2000 10003 22 123 1234000 44444444 9999")]
-		public void SumOfListOfValuesWithComparer_Test(string strng, string expected)
+		[InlineData("aaa 111 bbb 7978to99 535", "aaa bbb 111 535 7978to99")]
+		public void WeightSort_Test(string strng, string expected)
 		{
 			// get list of ints from input string
 			var result = strng.Split(' ').OrderBy(s => s, new WeightedDigitComparer());
 			
 			var final = string.Join(" ", result);
 			Assert.Equal(final, expected);
-		}
-
+		 }
 
 		/// <summary>
 		/// WeightedDigitComparer  will provide a way to customize the sort order of a collection 
 		/// since we need to compare strings for weights that are the same and weight numbers that are not.
 		/// </summary>
 		public class WeightedDigitComparer : IComparer<string>
-		{
-			// still have bugs = crash with names
-			// make it readable
-			// follows known pattern
-			public int Compare(string x, string y)
+		{	
+			public int Compare(string a, string b)
 			{
-
-				var xWeight = x.Select(s => int.Parse(s.ToString())).ToArray();
-
-				var yWeight = y.Select(s => int.Parse(s.ToString())).ToArray();
+				//var xWeight = a.Select(s => int.Parse(s.ToString())).ToArray();				
+				// Select ontly the numrics fromt he string and disregard the alpha segments
+				var xWeight = a.Select(s => 
+				{
+					int value;
+					bool success = int.TryParse(s.ToString(), out value);
+					return new { value, success };
+				})
+				.Where(pair => pair.success)
+				.Select(pair => pair.value).ToArray();
+				
+				//var yWeight = b.Select(s => int.Parse(s.ToString())).ToArray();
+				// Select ontly the numrics fromt he string and disregard the alpha segments			
+				var yWeight = b.Select(s =>
+				{
+					int value;
+					bool success = int.TryParse(s.ToString(), out value);
+					return new { value, success };
+				})
+				.Where(pair => pair.success)
+				.Select(pair => pair.value).ToArray();				
 			
 				// xSum = digit weigth of X
 				var xsum = xWeight.Sum();
@@ -56,7 +70,7 @@ namespace FisherAndPaykelAssessment.Test
 				// when equal weghting then compare then as strings
 				if (xsum == ysum)
 				{					
-					return string.Compare(x.ToString(), y.ToString());
+					return string.Compare(a.ToString(), b.ToString());
 				}
 				else
 				{
@@ -65,6 +79,5 @@ namespace FisherAndPaykelAssessment.Test
 				}
 			}
 		}
-
 	}
 }

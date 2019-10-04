@@ -12,7 +12,8 @@ namespace FisherAndPaykelAssessment.Test
 		///// We will itterate through the characters by creating a Character Array from the string
 		///// then see if the dictionary contains the character -
 		///// if it does then we get that value and increment it by 1 and set that as the new value for the char key in the dictionary.
-		///// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
+		///// If it does not contain it then we add the char as key to the dictionary and set the value to 1,
+		///// In order to for it not be case sensitive we will ignore case
 		///// </summary>
 		///// <param name="stringInput"></param>
 		///// <param name="expected"></param>
@@ -59,7 +60,7 @@ namespace FisherAndPaykelAssessment.Test
 
 			Console.WriteLine(firstcharchar);
 
-			Assert.True(firstcharchar == expected);
+			Assert.Equal(firstcharchar, expected,true);
 		}
 	}
 }
