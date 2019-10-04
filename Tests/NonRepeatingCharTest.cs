@@ -15,6 +15,7 @@ namespace FisherAndPaykelAssessment.Test
 		/// <param name="stringInput"></param>
 		/// <param name="expected"></param>
 		[Theory]
+		[InlineData("STreSS", 'T')]
 		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
 		[InlineData("123abc456def", '1')]
 		[InlineData("aaaaaaaaaaaaa", ' ')]
@@ -56,41 +57,47 @@ namespace FisherAndPaykelAssessment.Test
 		///// <param name="stringInput"></param>
 		///// <param name="expected"></param>
 		[Theory]
-		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
-		[InlineData("123abc456def", '1')]
-		[InlineData("Loan@#$%$LL*(gkb&*%", 'o')]
-		[InlineData("extensibility", 'x')]
-		[InlineData("_'&)(&KJ75468600", '_')]
-		[InlineData("", ' ')]
-		[InlineData(" ", ' ')]
-		[InlineData(null, ' ')]
-		[InlineData("stress", 'T')]
-		public void FirstNonRepeatingChar_Dictionary_Test(string stringInput, char expected)
+		[InlineData("STreSS", "T")]
+		[InlineData("1233", "1")]
+		[InlineData(" o an@#o$%$*(gkb&*%", "a")]
+		[InlineData("123abc456def", "1")]
+		[InlineData("Loan@#$%$LL*(gkb&*%", "o")]
+		[InlineData("extensibility", "x")]
+		[InlineData("_&)(&KJ75468600", "_")]
+		[InlineData("", "")]
+		[InlineData(" ", " ")]
+		[InlineData(null, "")]
+		[InlineData("stress", "t")]
+		public void FirstNonRepeatingChar_Dictionary_Test(string str, string expected)
 		{
-			var charDictionary = new Dictionary<char, int>();
+			var charDictionary = new Dictionary<string, int>();
 
-			//if (!string.IsNullOrEmpty(stringInput))
+			if (!string.IsNullOrEmpty(str))
 			{
 				int temp = 0;
-				foreach (char c in stringInput.ToCharArray())
+				foreach (char c in str.ToCharArray())
 				{
-					if (charDictionary.ContainsKey(c))
+
+					var cString = c.ToString();
+
+					if (charDictionary.ContainsKey(cString))
 					{
-						temp = charDictionary[c];
-						charDictionary[c] = temp + 1;
+						temp = charDictionary[cString];
+						charDictionary[cString] = temp + 1;
 						continue;
 					}
-					charDictionary.Add(c, 1);
+					charDictionary.Add(cString, 1);
 				}
 			}
 
-			var firstcharchar = ' ';
+			var firstcharchar = string.Empty;
 			if (charDictionary.Values.Contains(1))
 			{
 				firstcharchar = charDictionary.First(x => x.Value == 1).Key;
 			}
 
 			Console.WriteLine(firstcharchar);
+
 			Assert.True(firstcharchar == expected);
 		}
 	}
