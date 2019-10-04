@@ -24,7 +24,7 @@ namespace FisherAndPaykelAssessment.Test
 		[InlineData("", ' ')]
 		[InlineData(" ", ' ')]
 		[InlineData(null, ' ')]
-		public void LINQ_TestForFirstNonRepeatingChar(string stringInput, char expected)
+		public void FirstNonRepeatingChar_Linq_Test(string stringInput, char expected)
 		{
 			var firstcharchar = ' ';
 
@@ -65,7 +65,7 @@ namespace FisherAndPaykelAssessment.Test
 		[InlineData("", ' ')]
 		[InlineData(" ", ' ')]
 		[InlineData(null, ' ')]
-		public void Dictionary_TestForFirstNonRepeatingChar(string stringInput, char expected)
+		public void FirstNonRepeatingChar_Dictionary_Test(string stringInput, char expected)
 		{
 			var charDictionary = new Dictionary<char, int>();
 

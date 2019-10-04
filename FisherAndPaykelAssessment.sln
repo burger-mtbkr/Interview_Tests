@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonRepeatingCharacter", "No
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FisherAndPaykelAssessment.Test", "Tests\FisherAndPaykelAssessment.Test.csproj", "{97FB9622-4349-4093-8D1C-E8298AFDB730}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci", "Fibonacci\Fibonacci.csproj", "{775908DD-130C-4C4B-88E2-7F647052E047}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{97FB9622-4349-4093-8D1C-E8298AFDB730}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97FB9622-4349-4093-8D1C-E8298AFDB730}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97FB9622-4349-4093-8D1C-E8298AFDB730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{775908DD-130C-4C4B-88E2-7F647052E047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775908DD-130C-4C4B-88E2-7F647052E047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775908DD-130C-4C4B-88E2-7F647052E047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775908DD-130C-4C4B-88E2-7F647052E047}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

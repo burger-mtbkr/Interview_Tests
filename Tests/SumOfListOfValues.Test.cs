@@ -32,7 +32,7 @@ namespace FisherAndPaykelAssessment.Test
 		/// <param name="allowNegatives"></param>
 		[Theory]
 		[MemberData(nameof(SumOfListOfValuesTestData))]
-		public void Test_SumOfListOfValues_New_Value_Totals(List<long> listOfDigits, int expected, bool allowNegatives)
+		public void SumOfListOfValues_New_Value_Totals_Test(List<long> listOfDigits, int expected, bool allowNegatives)
 		{
 
 			var result = new List<long>();
