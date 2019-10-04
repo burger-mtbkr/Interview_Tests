@@ -54,7 +54,12 @@ namespace FisherAndPaykelAssessment
 			var result = new List<long>();
 			var errors = new List<string>();
 
-			for (int i = 0; i < listOfDigits.Count(); i++)
+			if(listOfDigits?.Any() == false)
+			{
+				errors.Add("There are no digits to use for the calculation.");
+			}
+
+			for (int i = 0; i < listOfDigits?.Count(); i++)
 			{
 				var someInt = listOfDigits[i];
 

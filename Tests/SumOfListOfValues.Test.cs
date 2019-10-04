@@ -14,11 +14,12 @@ namespace FisherAndPaykelAssessment.Test
 		/// </summary>
 		public static IEnumerable<object[]> SumOfListOfValuesTestData => new[]
 		{
-			new object[]
-			{
-				new List<long>{-15,100,333,-99,19,22,0}, 0 ,true},
+				new object[]{new List<long>{-15,100,333,-99,19,22,0}, 0 ,true},
 				new object[] { new List<long>{-11,22,33}, 12, false },
 				new object[] { new List<long>{1001,23},7, false },
+				new object[] { new List<long>{},0, false },
+				new object[] { null,0, false },
+
 			};
 
 		/// <summary>
@@ -37,7 +38,7 @@ namespace FisherAndPaykelAssessment.Test
 			var result = new List<long>();
 			var errors = new List<string>();
 
-			for (int i = 0; i < listOfDigits.ToList().Count(); i++)
+			for (int i = 0; i < listOfDigits?.ToList().Count(); i++)
 			{
 				var someInt = listOfDigits[i];
 
