@@ -9,41 +9,9 @@ namespace FisherAndPaykelAssessment
 	{
 		static void Main(string[] args)
 		{
-			var linqOption = FirstNonRepeatedCharInStringLinq("Loan@#$%$LL*(gkb&*%");
-			var linqResult = linqOption.ToString();
-
-			var dictionaryOption = FirstNonRepeatedCharInStringDictionary("Loan@#$%$LL*(gkb&*%");
-			var dictionaryResult = linqOption.ToString();
-
-
-			Console.WriteLine(linqResult);
+			var dictionaryResult = FirstNonRepeatedCharInStringDictionary("Loan@#$%$LL*(gkb&*%");		
+	
 			Console.WriteLine(dictionaryResult);
-		}
-
-		/// <summary>
-		/// In this example we will use LINQ to group the characters in the string.
-		/// If there are any then we select the group where the count is 1
-		/// If there are any of those - we return the fist one whcih will be our non repeating char
-		/// </summary>
-		/// <param name="str"></param>
-		public static string FirstNonRepeatedCharInStringLinq(string str)
-		{
-			var firstcharchar = ' ';
-
-			if (!string.IsNullOrEmpty(str))
-			{
-				var group = str.GroupBy(c => c).ToList();
-				if (group?.Any() == true)
-				{
-					var singles = group.Where(g => g.Count() == 1);
-					if (singles?.Any() == true)
-					{
-						firstcharchar = singles.First().Key;
-					}
-				}
-			}
-
-			return firstcharchar.ToString();
 		}
 
 		/// <summary>
@@ -54,26 +22,29 @@ namespace FisherAndPaykelAssessment
 		/// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
 		/// </summary>
 		/// <param name="str"></param>
-		public static char FirstNonRepeatedCharInStringDictionary(string str)
+		public static string FirstNonRepeatedCharInStringDictionary(string str)
 		{
-			var charDictionary = new Dictionary<char, int>();
+			var charDictionary = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
 
 			if (!string.IsNullOrEmpty(str))
 			{
 				int temp = 0;
 				foreach (char c in str.ToCharArray())
 				{
-					if (charDictionary.ContainsKey(c))
+
+					var cString = c.ToString();
+
+					if (charDictionary.ContainsKey(cString))
 					{
-						temp = charDictionary[c];
-						charDictionary[c] = temp + 1;
+						temp = charDictionary[cString];
+						charDictionary[cString] = temp + 1;
 						continue;
 					}
-					charDictionary.Add(c, 1);
+					charDictionary.Add(cString, 1);
 				}
 			}
 
-			var firstcharchar = ' ';
+			var firstcharchar = string.Empty;
 			if (charDictionary.Values.Contains(1))
 			{
 				firstcharchar = charDictionary.First(x => x.Value == 1).Key;

@@ -7,46 +7,6 @@ namespace FisherAndPaykelAssessment.Test
 {
 	public class NonRepeatingCharTest
 	{
-		/// <summary>
-		/// In this example we will use LINQ to group the characters in the string.
-		/// If there are any then we select the group where the count is 1
-		/// If there are any of those - we return the fist one whcih will be our non repeating char
-		/// </summary>
-		/// <param name="stringInput"></param>
-		/// <param name="expected"></param>
-		[Theory]
-		[InlineData("STreSS", 'T')]
-		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
-		[InlineData("123abc456def", '1')]
-		[InlineData("aaaaaaaaaaaaa", ' ')]
-		[InlineData("Loan@#$%$LL*(gkb&*%", 'o')]
-		[InlineData("extensibility", 'x')]
-		[InlineData("_'&)(&KJ75468600", '_')]
-		[InlineData("", ' ')]
-		[InlineData(" ", ' ')]
-		[InlineData(null, ' ')]
-		public void FirstNonRepeatingChar_Linq_Test(string stringInput, char expected)
-		{
-			var firstcharchar = ' ';
-
-			if (!string.IsNullOrEmpty(stringInput))
-			{
-				var group = stringInput.GroupBy(c => c).ToList();
-				if (group?.Any() == true)
-				{
-					var singles = group.Where(g => g.Count() == 1);
-					if (singles?.Any() == true)
-					{
-						firstcharchar = singles.First().Key;
-					}
-				}
-			}
-
-			Console.WriteLine(firstcharchar);
-
-			Assert.True(firstcharchar == expected);
-		}
-
 		///// <summary>
 		///// Test will use a dictionary to store the character and counts as the key values
 		///// We will itterate through the characters by creating a Character Array from the string
@@ -58,6 +18,7 @@ namespace FisherAndPaykelAssessment.Test
 		///// <param name="expected"></param>
 		[Theory]
 		[InlineData("STreSS", "T")]
+		[InlineData("STreSS", "t")]
 		[InlineData("1233", "1")]
 		[InlineData(" o an@#o$%$*(gkb&*%", "a")]
 		[InlineData("123abc456def", "1")]
@@ -70,7 +31,7 @@ namespace FisherAndPaykelAssessment.Test
 		[InlineData("stress", "t")]
 		public void FirstNonRepeatingChar_Dictionary_Test(string str, string expected)
 		{
-			var charDictionary = new Dictionary<string, int>();
+			var charDictionary = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);		
 
 			if (!string.IsNullOrEmpty(str))
 			{
