@@ -57,7 +57,6 @@ namespace FisherAndPaykelAssessment.Test
 		///// <param name="expected"></param>
 		[Theory]
 		[InlineData(" o an@#o$%$*(gkb&*%", 'a')]
-		[InlineData("aaaaaaaaaaaaa", ' ')]
 		[InlineData("123abc456def", '1')]
 		[InlineData("Loan@#$%$LL*(gkb&*%", 'o')]
 		[InlineData("extensibility", 'x')]
@@ -65,11 +64,12 @@ namespace FisherAndPaykelAssessment.Test
 		[InlineData("", ' ')]
 		[InlineData(" ", ' ')]
 		[InlineData(null, ' ')]
+		[InlineData("stress", 'T')]
 		public void FirstNonRepeatingChar_Dictionary_Test(string stringInput, char expected)
 		{
 			var charDictionary = new Dictionary<char, int>();
 
-			if (!string.IsNullOrEmpty(stringInput))
+			//if (!string.IsNullOrEmpty(stringInput))
 			{
 				int temp = 0;
 				foreach (char c in stringInput.ToCharArray())

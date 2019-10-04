@@ -25,14 +25,14 @@ namespace FisherAndPaykelAssessment
 		/// If there are any then we select the group where the count is 1
 		/// If there are any of those - we return the fist one whcih will be our non repeating char
 		/// </summary>
-		/// <param name="stringInput"></param>
-		public static char FirstNonRepeatedCharInStringLinq(string stringInput)
+		/// <param name="str"></param>
+		public static string FirstNonRepeatedCharInStringLinq(string str)
 		{
 			var firstcharchar = ' ';
 
-			if (!string.IsNullOrEmpty(stringInput))
+			if (!string.IsNullOrEmpty(str))
 			{
-				var group = stringInput.GroupBy(c => c).ToList();
+				var group = str.GroupBy(c => c).ToList();
 				if (group?.Any() == true)
 				{
 					var singles = group.Where(g => g.Count() == 1);
@@ -43,7 +43,7 @@ namespace FisherAndPaykelAssessment
 				}
 			}
 
-			return firstcharchar;
+			return firstcharchar.ToString();
 		}
 
 		/// <summary>
@@ -53,15 +53,15 @@ namespace FisherAndPaykelAssessment
 		/// if it does then we get that value and increment it by 1 and set that as the new value for the char key in the dictionary.
 		/// If it does not contain it then we add the char as key to the dictionary and set the value to 1		/// 
 		/// </summary>
-		/// <param name="stringInput"></param>
-		public static char FirstNonRepeatedCharInStringDictionary(string stringInput)
+		/// <param name="str"></param>
+		public static char FirstNonRepeatedCharInStringDictionary(string str)
 		{
 			var charDictionary = new Dictionary<char, int>();
 
-			if (!string.IsNullOrEmpty(stringInput))
+			if (!string.IsNullOrEmpty(str))
 			{
 				int temp = 0;
-				foreach (char c in stringInput.ToCharArray())
+				foreach (char c in str.ToCharArray())
 				{
 					if (charDictionary.ContainsKey(c))
 					{
